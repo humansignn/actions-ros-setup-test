@@ -37,27 +37,27 @@ jobs:
       - name: create_thirdparty_dir
         run: |
           mkdir -p $HOME/work/github-actions-ros-test/third-party
-      # - name: install_dep_ros_noetic
-      #   run: |
-      #     sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-      #     sudo apt install curl
-      #     curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-      #     sudo apt update
-      #     sudo apt install ros-noetic-desktop-full
-      #     source /opt/ros/noetic/setup.bash
-      #     sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-      #     sudo rosdep init
-      #     rosdep update
-      #     source /opt/ros/noetic/setup.bash
-      #     mkdir -p $HOME/work/github-actions-ros-test/third-party
-      # - name: install_dep_eigenpy
-      #   run: |
-      #     cd $HOME/work/github-actions-ros-test/third-party
-      #     git clone --recursive https://github.com/stack-of-tasks/eigenpy.git
-      #     cd eigenpy && mkdir build && cd build
-      #     cmake .. -DCMAKE_BUILD_TYPE=Release
-      #     make -j$(nproc)
-      #     sudo make install
+      - name: install_dep_ros_noetic
+        run: |
+          sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+          sudo apt install curl
+          curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+          sudo apt update
+          sudo apt install ros-noetic-desktop-full
+          source /opt/ros/noetic/setup.bash
+          sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+          sudo rosdep init
+          rosdep update
+          source /opt/ros/noetic/setup.bash
+          mkdir -p $HOME/work/github-actions-ros-test/third-party
+      - name: install_dep_eigenpy
+        run: |
+          cd $HOME/work/github-actions-ros-test/third-party
+          git clone --recursive https://github.com/stack-of-tasks/eigenpy.git
+          cd eigenpy && mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          make -j$(nproc)
+          sudo make install
       - name: install_dep_cppad
         run: |
           cd $HOME/work/github-actions-ros-test/third-party
@@ -66,17 +66,17 @@ jobs:
           cmake ..
           make -j$(nproc)
           sudo make install
-      # - name: install_dep_pinocchio
-      #   run: |
-      #     cd $HOME/work/github-actions-ros-test/third-party
-      #     git config --global url.https://github.com/.insteadOf git://github.com/
-      #     git clone --recursive https://github.com/humansignn/pinocchio.git
-      #     cd pinocchio && mkdir build && cd build
-      #     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
-      #     make -j$(nproc)
-      #     sudo make install
-      # # - name: run_catkin
-      # #   run: |
-      # #     cd $HOME/work/github-actions-ros-test/catkin_ws
-      # #     catkin_make -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+      - name: install_dep_pinocchio
+        run: |
+          cd $HOME/work/github-actions-ros-test/third-party
+          git config --global url.https://github.com/.insteadOf git://github.com/
+          git clone --recursive https://github.com/humansignn/pinocchio.git
+          cd pinocchio && mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
+          make -j$(nproc)
+          sudo make install
+      - name: run_catkin
+        run: |
+          cd $HOME/work/github-actions-ros-test/catkin_ws
+          catkin_make -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
