@@ -66,8 +66,8 @@ jobs:
       - name: install_dep_cppad
         run: |
           cd $HOME/work/github-actions-ros-test/third-party
-          git clone https://github.com/coin-or/CppAD.git cppad.git
-          cd cppad & mkdir build && cd build
+          git clone https://github.com/coin-or/CppAD.git
+          cd CppAD & mkdir build && cd build
           cmake ..
           make -j$(nproc)
           sudo make install
