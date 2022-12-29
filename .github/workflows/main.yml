@@ -34,6 +34,9 @@ jobs:
       #     key: ${ { matrix.config.name } }-ccache-${ { steps.ccache_cache_timestamp.outputs.timestamp } }
       #     restore-keys: |
       #         ${ { matrix.config.name } }-ccache-
+      - name: create_thirdparty_dir
+        run: |
+          mkdir -p $HOME/work/github-actions-ros-test/third-party
       # - name: install_dep_ros_noetic
       #   run: |
       #     sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
