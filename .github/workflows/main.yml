@@ -46,6 +46,7 @@ jobs:
           sudo rosdep init
           rosdep update
           source /opt/ros/noetic/setup.bash
+          mkdir -p $HOME/work/github-actions-ros-test/third-party
       # - uses: betwo/github-setup-catkin@master
       #   with:
       #     ros-version: 'noetic'
@@ -56,13 +57,23 @@ jobs:
       #     sudo apt install libeigen3-dev
       - name: install_dep_eigenpy
         run: |
+          cd $HOME/work/github-actions-ros-test/third-party
           git clone --recursive https://github.com/stack-of-tasks/eigenpy.git
           cd eigenpy && mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release
           make -j$(nproc)
           sudo make install
+      - name: install_dep_cppad
+        run: |
+          cd $HOME/work/github-actions-ros-test/third-party
+          git clone https://github.com/coin-or/CppAD.git cppad.git
+          cd cppad & mkdir build && cd build
+          cmake ..
+          make -j$(nproc)
+          sudo make install
       - name: install_dep_pinocchio
         run: |
+          cd $HOME/work/github-actions-ros-test/third-party
           git config --global url.https://github.com/.insteadOf git://github.com/
           git clone --recursive https://github.com/humansignn/pinocchio.git
           cd pinocchio && mkdir build && cd build
