@@ -49,6 +49,7 @@ jobs:
           sudo rosdep init
           rosdep update
           source /opt/ros/noetic/setup.bash
+          sudo apt install ros-noetic-ros-control ros-noetic-ros-controllers
           mkdir -p $HOME/work/github-actions-ros-test/third-party
       - name: install_dep_eigenpy
         run: |
@@ -73,6 +74,14 @@ jobs:
           git clone --recursive https://github.com/humansignn/pinocchio.git
           cd pinocchio && mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
+          make -j$(nproc)
+          sudo make install
+      - name: install_dep_osqp_eigen
+        run: |
+          cd $HOME/work/github-actions-ros-test/third-party
+          git clone https://github.com/robotology/osqp-eigen.git
+          cd osqp-eigen && mkdir build && cd build
+          cmake ..
           make -j$(nproc)
           sudo make install
       - name: run_catkin
