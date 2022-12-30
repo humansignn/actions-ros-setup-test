@@ -66,16 +66,16 @@ jobs:
           cd cppad && mkdir build && cd build
           cmake ..
           make -j$(nproc)
-          sudo make install
-      - name: install_dep_pinocchio
-        run: |
-          cd $HOME/work/github-actions-ros-test/third-party
-          git config --global url.https://github.com/.insteadOf git://github.com/
-          git clone --recursive https://github.com/humansignn/pinocchio.git
-          cd pinocchio && mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
-          make -j$(nproc)
-          sudo make install
+          sudo sudo make install
+      # - name: install_dep_pinocchio
+      #   run: |
+      #     cd $HOME/work/github-actions-ros-test/third-party
+      #     git config --global url.https://github.com/.insteadOf git://github.com/
+      #     git clone --recursive https://github.com/humansignn/pinocchio.git
+      #     cd pinocchio && mkdir build && cd build
+      #     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
+      #     make -j$(nproc)
+      #     sudo make install
       - name: install_osqp
         run: |
           cd $HOME/work/github-actions-ros-test/third-party
