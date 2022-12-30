@@ -16,8 +16,8 @@ jobs:
             }
     steps:
       - uses: actions/checkout@v1
-        with:
-          path: catkin_ws/src/github-actions-ros-test
+        # with:
+        #   path: catkin_ws/src/github-actions-ros-test
       # - name: install_ccache
       #   run: |
       #     sudo apt install ccache
@@ -86,6 +86,7 @@ jobs:
           sudo make install
       - name: run_catkin
         run: |
+          mkdir -p $HOME/work/github-actions-ros-test/catkin_ws/src
           cd $HOME/work/github-actions-ros-test/catkin_ws
           catkin_make -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
