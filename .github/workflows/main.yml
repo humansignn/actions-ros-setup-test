@@ -51,14 +51,14 @@ jobs:
       #     source /opt/ros/noetic/setup.bash
       #     sudo apt install ros-noetic-ros-control ros-noetic-ros-controllers
       #     mkdir -p $HOME/work/github-actions-ros-test/third-party
-      # - name: install_dep_eigenpy
-      #   run: |
-      #     cd $HOME/work/github-actions-ros-test/third-party
-      #     git clone --recursive https://github.com/stack-of-tasks/eigenpy.git
-      #     cd eigenpy && mkdir build && cd build
-      #     cmake .. -DCMAKE_BUILD_TYPE=Release
-      #     make -j$(nproc)
-      #     sudo make install
+      - name: install_dep_eigenpy
+        run: |
+          cd $HOME/work/github-actions-ros-test/third-party
+          git clone --recursive https://github.com/stack-of-tasks/eigenpy.git
+          cd eigenpy && mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          make -j$(nproc)
+          sudo make install
       # - name: install_dep_cppad
       #   run: |
       #     cd $HOME/work/github-actions-ros-test/third-party
